@@ -5,11 +5,14 @@ function App() {
 
   useEffect( () => {
     Book.bulkInsert()
-    .then( () => {
-      Book.read()
-      .then( books => console.log(books))
-    })
-    .catch(error => console.error(error))
+      .then( () => {
+        Book.read()
+          .then(({ data: books }) => {
+            console.log(books)
+          })
+          .catch(error => console.error(error))
+      })
+      .catch(error => console.error(error))
   }, [])
   return (
     <h1>Hello World</h1>

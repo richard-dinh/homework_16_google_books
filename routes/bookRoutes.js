@@ -103,12 +103,12 @@ router.post('/books/bulk', (request, response) => {
   Book.deleteMany({})
     .then(() => Book.collection.insertMany(BookSeed))
     .then(data => {
-      console.log(data.result.n + " records inserted!");
-      process.exit(0);
+      console.log(data.result.n + " records inserted!")
+      response.sendStatus(200)
     })
     .catch(err => {
-      console.error(err);
-      process.exit(1);
+      console.error(err)
+      response.sendStatus(400)
     })
 })
 
