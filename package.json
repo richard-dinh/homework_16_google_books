@@ -1,0 +1,26 @@
+{
+  "name": "homework_16_google_books",
+  "version": "1.0.0",
+  "description": "In this activity, you'll create a new React-based Google Books Search app. This assignment requires you to create React components, work with helper/util functions, and utilize React lifecycle methods to query and display books based on user searches. You'll also use Node, Express and MongoDB so that users can save books to review or purchase later.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richard-dinh/homework_16_google_books.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richard-dinh/homework_16_google_books/issues"
+  },
+  "homepage": "https://github.com/richard-dinh/homework_16_google_books#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.6"
+  }
+}
