@@ -1,6 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import Book from './utils/Book'
 
 function App() {
+
+  useEffect( () => {
+    Book.bulkInsert()
+    .then( () => {
+      Book.read()
+      .then( books => console.log(books))
+    })
+    .catch(error => console.error(error))
+  }, [])
   return (
     <h1>Hello World</h1>
   )
