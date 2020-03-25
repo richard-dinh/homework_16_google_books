@@ -46,8 +46,11 @@ router.put('/users/:id', (request, response) => {
 
 //delete a book from the user's saved books
 router.delete('/users/:id', (request, response) => {
-  User.findByIdAndUpdate(request.params.id, { $pull: { books: request.body.id } })
-    .then(() => response.sendStatus(200))
+  Book.findById(request.body.id)
+    .then(book => {
+      User.findByIdAndUpdate(request.params.id, { $pull: { books: book._id } })
+        .then(() => response.sendStatus(200))
+    })
     .catch(error => {
       console.error(error)
       response.sendStatus(400)
