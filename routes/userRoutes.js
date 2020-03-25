@@ -23,7 +23,7 @@ router.get('/users/:username', (request, response) => {
 //create a User
 router.post('/users', (request, response) => {
   User.create(request.body)
-  .then( () => response.sendStatus(200))
+  .then( user => response.json(user))
   .catch( error => {
     console.error(error)
     response.sendStatus(400)

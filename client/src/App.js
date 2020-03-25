@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react'
-import Book from './utils/Book'
+import React, {useEffect, useState} from 'react'
 import Navbar from './components/Navbar'
 import SignIn from './components/SignIn'
+import UserContext from './utils/UserContext'
+import User from './utils/User'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,11 +22,28 @@ function App() {
   //     })
   //     .catch(error => console.error(error))
   // }, [])
+
+  const [userState, setUserState] = useState({
+    username: '',
+    userId: '',
+    books: []
+  })
+
+  userState.handleInputChange = event => {
+    setUserState({...userState, [event.target.name]: event.target.value})
+  }
+  userState.handleSignUp = event => {
+    event.preventDefault()
+    User.create(userState.username)
+    .then(({data: user}) => {
+      setUserState({...userState, userId: user._id, books: user.books})
+    })
+    .catch(error => console.error(error))
+  }
   return (
     <>
-      
+    <UserContext.Provider value = {userState}>
     <Router>
-        
         <Switch>
           <Route exact path = '/'>
             <SignIn />
@@ -40,6 +58,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+    </UserContext.Provider>
     </>
   )
 }

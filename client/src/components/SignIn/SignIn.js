@@ -1,19 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-
+import UserContext from '../../utils/UserContext'
+import {Link} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -34,8 +31,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+const SignIn = () => {
   const classes = useStyles();
+
+  let {username, handleInputChange, handleSignUp} = useContext(UserContext)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -47,8 +46,9 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in - Offbrand Google Books
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}>
           <TextField
+            onChange = {handleInputChange}
             variant="outlined"
             margin="normal"
             required
@@ -56,7 +56,7 @@ export default function SignIn() {
             id="username"
             label="Username"
             name="username"
-            autoFocus
+            value = {username}
           />
           <Grid container>
             <Grid item xs>
@@ -67,19 +67,22 @@ export default function SignIn() {
                 color="primary"
                 className={classes.submit}
               >
-              Sign In
+                Sign In
           </Button>
             </Grid>
             <Grid item xs>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-              Register
-          </Button>
+              <Link>
+                <Button
+                  onClick = {handleSignUp}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Register
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </form>
@@ -89,3 +92,5 @@ export default function SignIn() {
     </Container>
   )
 }
+
+export default SignIn
