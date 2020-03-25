@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import Book from './utils/Book'
-
+import Navbar from './components/Navbar'
 function App() {
 
   useEffect( () => {
@@ -15,7 +15,9 @@ function App() {
       .catch(error => console.error(error))
   }, [])
   return (
-    <h1>Hello World</h1>
+    <>
+      <Navbar />
+    </>
   )
 }
 
