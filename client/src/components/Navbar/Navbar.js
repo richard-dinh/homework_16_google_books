@@ -30,6 +30,10 @@ const Navbar = () => {
     setDrawerState({ open })
   }
 
+  drawerState.handleButtonClick = () => {
+    setDrawerState({open: false})
+  }
+
   return (
     <DrawerContext.Provider value = {drawerState}>
       <div className={classes.root}>

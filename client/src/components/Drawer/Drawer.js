@@ -7,21 +7,25 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DrawerContext from '../../utils/DrawerContext'
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SearchIcon from '@material-ui/icons/Search';
-
+import {Link} from 'react-router-dom'
 
 const DrawerComponent = () => {
-  const {toggleDrawer, open} = useContext(DrawerContext)
+  const { toggleDrawer, open, handleButtonClick} = useContext(DrawerContext)
   return (
     <Drawer anchor='left' open={open} onClose={ () => toggleDrawer(false)}>
       <List>
-        <ListItem>
-          <ListItemIcon><SearchIcon /></ListItemIcon>
-          <ListItemText primary = {'Search'}/>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon><MenuBookIcon /></ListItemIcon>
-          <ListItemText primary = {'Saved'}/>
-        </ListItem>
+        <Link to = '/'>
+          <ListItem button onClick = {handleButtonClick}>
+            <ListItemIcon><SearchIcon /></ListItemIcon>
+            <ListItemText primary = {'Search'}/>
+          </ListItem>
+        </Link>
+        <Link to='/saved'>
+          <ListItem button onClick={handleButtonClick}>
+            <ListItemIcon><MenuBookIcon /></ListItemIcon>
+            <ListItemText primary = {'Saved'}/>
+          </ListItem>
+        </Link>
       </List>
     </Drawer>
   )

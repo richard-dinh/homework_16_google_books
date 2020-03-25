@@ -1,6 +1,11 @@
 import React, {useEffect} from 'react'
 import Book from './utils/Book'
 import Navbar from './components/Navbar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 function App() {
 
   useEffect( () => {
@@ -16,7 +21,18 @@ function App() {
   }, [])
   return (
     <>
-      <Navbar />
+      <Router>
+        <Navbar />
+        
+        <Switch>
+          <Route exact path = '/'>
+            <h1>Search Page</h1>
+          </Route>
+          <Route exact path = '/saved'>
+            <h1>Saved Page</h1>
+          </Route>
+        </Switch>
+      </Router>
     </>
   )
 }
