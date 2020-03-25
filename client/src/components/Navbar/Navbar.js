@@ -8,7 +8,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Drawer from '../Drawer'
 import DrawerContext from '../../utils/DrawerContext'
 import InputBase from '@material-ui/core/InputBase'
-import PersonIcon from '@material-ui/icons/Person'
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,10 +96,10 @@ const Navbar = () => {
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
-                <PersonIcon />
+                <MenuBookIcon />
               </div>
               <InputBase
-                placeholder="Login"
+                placeholder="Search Book"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -106,6 +107,9 @@ const Navbar = () => {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
+            <Button variant="contained" color="primary">
+              Search
+              </Button>
           </Toolbar>
         </AppBar>
         <Drawer />

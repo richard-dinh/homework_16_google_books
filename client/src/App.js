@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import Book from './utils/Book'
 import Navbar from './components/Navbar'
+import SignIn from './components/SignIn'
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,14 +23,19 @@ function App() {
   // }, [])
   return (
     <>
-      <Router>
-        <Navbar />
+      
+    <Router>
         
         <Switch>
           <Route exact path = '/'>
+            <SignIn />
+          </Route>
+          <Route exact path = '/search'>
+          <Navbar />
             <h1>Search Page</h1>
           </Route>
           <Route exact path = '/saved'>
+            <Navbar />
             <h1>Saved Page</h1>
           </Route>
         </Switch>
