@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import SignIn from './components/SignIn'
 import UserContext from './utils/UserContext'
 import User from './utils/User'
+import Search from './components/Search'
 import {
   BrowserRouter as Router,
   Switch,
@@ -45,12 +46,12 @@ function App() {
     <UserContext.Provider value = {userState}>
     <Router>
         <Switch>
-          <Route exact path = '/'>
+          <Route exact path = 'signIn'>
             <SignIn />
           </Route>
-          <Route exact path = '/search'>
+          <Route exact path = '/'>
           <Navbar />
-            <h1>Search Page</h1>
+            <Search />
           </Route>
           <Route exact path = '/saved'>
             <Navbar />
