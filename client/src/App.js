@@ -49,6 +49,10 @@ function App() {
       })
       .catch(error => console.error(error))
   }
+
+  userState.handleSignOut = () => {
+    setUserState({ ...userState, userId: '', books: [] })
+  }
   return (
     <>
     <UserContext.Provider value = {userState}>
