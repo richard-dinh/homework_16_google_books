@@ -11,20 +11,19 @@ import {
   Switch,
   Route,
 } from 'react-router-dom'
-import {useHistory} from 'react-router-dom'
 function App() {
-  //seeding database
-  // useEffect( () => {
-  //   Book.bulkInsert()
-  //     .then( () => {
-  //       Book.read()
-  //         .then(({ data: books }) => {
-  //           console.log(books)
-  //         })
-  //         .catch(error => console.error(error))
-  //     })
-  //     .catch(error => console.error(error))
-  // }, [])
+
+  useEffect( () => {
+    Book.bulkInsert()
+      .then( () => {
+        Book.read()
+          .then(({ data: books }) => {
+            console.log(books)
+          })
+          .catch(error => console.error(error))
+      })
+      .catch(error => console.error(error))
+  }, [])
 
   const [userState, setUserState] = useState({
     username: '',
