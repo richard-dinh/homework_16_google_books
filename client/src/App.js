@@ -40,7 +40,7 @@ function App() {
     event.preventDefault()
     User.create(userState.username)
     .then(({data: user}) => {
-      setUserState({...userState, userId: user._id, books: user.books, username: ''})
+      setUserState({...userState, userId: user._id, savedBooks: user.books, username: ''})
     })
     .catch(error => console.error(error))
   }
@@ -48,13 +48,13 @@ function App() {
     event.preventDefault()
     User.read(userState.username)
       .then( ({data: user}) => {
-        setUserState({ ...userState, userId: user._id, books: user.books, username: '' })
+        setUserState({ ...userState, userId: user._id, savedBooks: user.books, username: ''})
       })
       .catch(error => console.error(error))
   }
 
   userState.handleSignOut = () => {
-    setUserState({ ...userState, userId: '', books: [] })
+    setUserState({ ...userState, userId: '', savedBooks: [] })
   }
 
   userState.handleAddToSaved = (userId, bookId, book) => {
@@ -62,7 +62,7 @@ function App() {
     .then( () => {
       let tempArr = JSON.parse(JSON.stringify(userState.savedBooks))
       tempArr.push(book)
-      setUserState({...userState, books: tempArr})
+      setUserState({...userState, savedBooks: tempArr})
     })
     .catch(error => console.error(error))
   }
@@ -70,7 +70,6 @@ function App() {
   userState.handleSearchBooks = (name) => {
     Book.get(name)
     .then( ({data: books}) => {
-      console.log(books)
       setUserState({...userState, books, userInput: ''})
     })
   }
@@ -83,11 +82,15 @@ function App() {
             <SignIn />
           </Route>
           <Route exact path = {userState.userId ? '/' : '/search'}>
-          <Navbar />
+          <Navbar
+            title = 'Search for A Book'
+          />
             <Search />
           </Route>
           <Route exact path = '/saved'>
-            <Navbar />
+              <Navbar
+                title='Saved Books'
+              />
             <h1>Saved Page</h1>
           </Route>
         </Switch>

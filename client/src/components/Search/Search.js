@@ -19,24 +19,17 @@ const Search = () => {
         {books ? books.map( book => 
           <BookCard
             key = {book._id}
+            _id = {book._id}
             link = {book.link} 
             title = {book.title}
             authors = {book.authors.map((author, i) => {
-              if(i === book.authors.length){
+              if(i === book.authors.length - 1){
                 return author
               }
               return author = author + ', '
             })}
             description = {book.description}
             image = {book.image}
-            onClickAction = {handleAddToSaved(userId, book._id, {
-              id: book._id,
-              authors: book.authors,
-              description: book.description,
-              image: book.image,
-              link: book.image,
-              title: book.title
-            })}
             action = "Add to Saved Books"
           />
           ) : null}

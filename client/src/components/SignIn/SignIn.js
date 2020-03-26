@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserContext from '../../utils/UserContext'
-import {Link} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),

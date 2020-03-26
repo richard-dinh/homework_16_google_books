@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Navbar = () => {
+const Navbar = props => {
   const classes = useStyles()
 
   const [drawerState, setDrawerState] = useState({
@@ -95,7 +95,7 @@ const Navbar = () => {
               />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Book Search
+              {props.title}
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
