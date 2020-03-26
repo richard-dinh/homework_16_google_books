@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import SignIn from './components/SignIn'
 import UserContext from './utils/UserContext'
 import User from './utils/User'
+import Book from './utils/Book'
 import Search from './components/Search'
 import {
   BrowserRouter as Router,
@@ -27,6 +28,7 @@ function App() {
   const [userState, setUserState] = useState({
     username: '',
     userId: '',
+    userInput: '',
     books: [],
     savedBooks: []
   })
@@ -60,7 +62,11 @@ function App() {
   }
 
   userState.handleSearchBooks = (name) => {
-    
+    Book.get(name)
+    .then( ({data: books}) => {
+      console.log(books)
+      setUserState({...userState, books, userInput: ''})
+    })
   }
   return (
     <>

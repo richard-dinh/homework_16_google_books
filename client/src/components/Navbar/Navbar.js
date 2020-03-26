@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -8,8 +8,9 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Drawer from '../Drawer'
 import DrawerContext from '../../utils/DrawerContext'
 import InputBase from '@material-ui/core/InputBase'
-import MenuBookIcon from '@material-ui/icons/MenuBook';
+import MenuBookIcon from '@material-ui/icons/MenuBook'
 import Button from '@material-ui/core/Button'
+import UserContext from '../../utils/UserContext'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -79,8 +80,9 @@ const Navbar = () => {
 
   drawerState.handleButtonClick = () => {
     setDrawerState({open: false})
-  }
+  } 
 
+  let {handleSearchBooks, userInput, handleInputChange} = useContext(UserContext)
 
   return (
     <DrawerContext.Provider value = {drawerState}>
@@ -106,9 +108,12 @@ const Navbar = () => {
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                onChange = {handleInputChange}
+                name = 'userInput'
+                value ={userInput}
               />
             </div>
-            <Button variant="contained" color="primary">
+            <Button onClick={() => handleSearchBooks(userInput)} variant="contained" color="primary">
               Search
               </Button>
           </Toolbar>

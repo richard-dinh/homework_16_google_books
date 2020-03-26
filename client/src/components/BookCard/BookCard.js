@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500],
-  },
+  }
 }));
 
 const BookCard = props => {
@@ -68,8 +68,13 @@ const BookCard = props => {
           {props.description}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button onClick = {onClickAction}>{props.action}</Button>
+      <CardActions
+        className={classes.action}
+      >
+        <Button 
+          onClick = {props.onClickAction}
+        >
+        {props.action}</Button>
       </CardActions>
     </Card>
   )
