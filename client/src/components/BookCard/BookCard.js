@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 const BookCard = props => {
   const classes = useStyles();
-  let {handleAddToSaved, userId} = useContext(UserContext)
+  let {handleAddToSaved, userId, handleDelete} = useContext(UserContext)
 
   return (
     <Card className={classes.root} >
@@ -67,17 +67,23 @@ const BookCard = props => {
       <CardActions
         className={classes.action}
       >
-        <Button 
-          onClick = {() => handleAddToSaved(userId, props._id, {
-            id: props._id,
-            authors: props.authors,
-            description: props.description,
-            image: props.image,
-            link: props.link,
-            title: props.title
-          })}
-        >
-        {props.action}</Button>
+        {props.isSearch ? 
+          <Button
+            onClick={ () => handleAddToSaved(userId, props._id, {
+              id: props._id,
+              authors: props.authors,
+              description: props.description,
+              image: props.image,
+              link: props.link,
+              title: props.title
+            })}
+          >
+            {props.action}</Button> :
+          <Button
+            onClick={ () => handleDelete(userId, props._id)}
+          >
+            {props.action}</Button>
+        }
       </CardActions>
     </Card>
   )

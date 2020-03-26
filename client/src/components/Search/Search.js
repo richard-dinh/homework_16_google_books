@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Search = () => {
-  let {books, handleAddToSaved, userId} = useContext(UserContext)
+  let {books} = useContext(UserContext)
   const classes = useStyles()
   return(
     <div className={classes.root}>
@@ -30,6 +30,7 @@ const Search = () => {
             })}
             description = {book.description}
             image = {book.image}
+            isSearch = {true}
             action = "Add to Saved Books"
           />
           ) : null}

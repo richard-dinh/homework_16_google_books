@@ -45,7 +45,7 @@ router.put('/users/:id', (request, response) => {
 })
 
 //delete a book from the user's saved books
-router.delete('/users/:id', (request, response) => {
+router.put('/users/delete/:id', (request, response) => {
   Book.findById(request.body.id)
     .then(book => {
       User.findByIdAndUpdate(request.params.id, { $pull: { books: book._id } })

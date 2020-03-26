@@ -5,13 +5,14 @@ import UserContext from './utils/UserContext'
 import User from './utils/User'
 import Book from './utils/Book'
 import Search from './components/Search'
+import Saved from './components/Saved'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 function App() {
-
   //seeding database
   // useEffect( () => {
   //   Book.bulkInsert()
@@ -54,7 +55,7 @@ function App() {
   }
 
   userState.handleSignOut = () => {
-    setUserState({ ...userState, userId: '', savedBooks: [] })
+    setUserState({ ...userState, userId:'', savedBooks: [] })
   }
 
   userState.handleAddToSaved = (userId, bookId, book) => {
@@ -73,6 +74,20 @@ function App() {
       setUserState({...userState, books, userInput: ''})
     })
   }
+
+  userState.handleDelete = (userId, bookId) => {
+    User.delete(userId, bookId)
+    .then( () => {
+      let tempArr = JSON.parse(JSON.stringify(userState.savedBooks))
+      tempArr.forEach((book, i) => {
+        if (book._id === bookId) {
+          tempArr.splice(i, 1)
+        }
+      })
+      setUserState({...userState, savedBooks: tempArr})
+    })
+    .catch(error => console.error(error))
+  }
   return (
     <>
     <UserContext.Provider value = {userState}>
@@ -87,11 +102,11 @@ function App() {
           />
             <Search />
           </Route>
-          <Route exact path = '/saved'>
+            <Route exact path={userState.userId ? '/saved' : '/'}>
               <Navbar
                 title='Saved Books'
               />
-            <h1>Saved Page</h1>
+            <Saved />
           </Route>
         </Switch>
       </Router>

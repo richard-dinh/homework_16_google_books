@@ -11,7 +11,8 @@ const UserContext = createContext({
   handleSignUp: () => {},
   handleSignOut: () => {},
   handleAddToSaved: () => {},
-  handleSearchBooks: () => {}
+  handleSearchBooks: () => {},
+  handleDelete: () => {}
 })
 
 export default UserContext
