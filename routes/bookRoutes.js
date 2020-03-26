@@ -11,6 +11,14 @@ router.get('/books', (request, response) => {
   })
 })
 
+router.get('/books/:bookName', (request, response) => {
+  Book.find({title: {$regex: request.params.bookName, $options: 'i'}})
+  .then( books => response.json(books))
+  .catch( error => {
+    console.error(error)
+    response.sendStatus(400)
+  })
+})
 //create a book
 router.post('/books', (request, response) => {
   Book.create(request.body)

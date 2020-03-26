@@ -1,8 +1,8 @@
-import React from 'react'
-import Card from '../BookCard'
+import React, {useContext} from 'react'
+import BookCard from '../BookCard'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
-
+import UserContext from '../../utils/UserContext'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -10,47 +10,28 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Search = () => {
+  let {books, handleAddToSaved} = useContext(UserContext)
   const classes = useStyles()
   return(
     <div className={classes.root}>
       <Grid container spacing={3}>
-      <Grid item xs={4}>
-        <Card />
+        {/* Book Cards here */}
+        {books ? books.map( book => 
+          <BookCard 
+            title = {book.title}
+            authors = {book.authors.map((author, i) => {
+              if(i === book.authors.length){
+                return author
+              }
+              return author = author + ', '
+            })}
+            description = {book.description}
+            image = {book.image}
+            onClickAction = {handleAddToSaved}
+            action = "Add to Saved Books"
+          />
+          ) : null}
       </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-      <Grid item xs={4}>
-        <Card />
-      </Grid>
-    </Grid>
     </div>
   )
 }

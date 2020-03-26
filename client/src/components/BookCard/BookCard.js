@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const BookCard = () => {
+const BookCard = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -52,25 +52,24 @@ const BookCard = () => {
           </Avatar>
         }
         //BOOK TITLE HERE
-        title="Shrimp and Chorizo Paella"
+        title={props.title}
         //BOOK AUTHOR HERE
-        subheader="September 14, 2016"
+        subheader={props.authors}
       />
       <CardMedia
         className={classes.media}
         // BOOK IMAGE HERE
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image={props.image}
+        title={props.title}
       />
       <CardContent>
         {/* BOOK PLOT HERE */}
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          {props.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button>Add to Saved Books</Button>
+        <Button onClick = {onClickAction}>{props.action}</Button>
       </CardActions>
     </Card>
   )

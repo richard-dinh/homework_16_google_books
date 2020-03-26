@@ -27,7 +27,8 @@ function App() {
   const [userState, setUserState] = useState({
     username: '',
     userId: '',
-    books: []
+    books: [],
+    savedBooks: []
   })
 
   userState.handleInputChange = event => {
@@ -52,6 +53,14 @@ function App() {
 
   userState.handleSignOut = () => {
     setUserState({ ...userState, userId: '', books: [] })
+  }
+
+  userState.handleAddToSaved = (userId, bookId) => {
+
+  }
+
+  userState.handleSearchBooks = (name) => {
+    
   }
   return (
     <>
