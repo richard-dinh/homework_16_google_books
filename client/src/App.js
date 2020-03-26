@@ -37,19 +37,27 @@ function App() {
     event.preventDefault()
     User.create(userState.username)
     .then(({data: user}) => {
-      setUserState({...userState, userId: user._id, books: user.books})
+      setUserState({...userState, userId: user._id, books: user.books, username: ''})
     })
     .catch(error => console.error(error))
+  }
+  userState.handleLogIn = event => {
+    event.preventDefault()
+    User.read(userState.username)
+      .then( ({data: user}) => {
+        setUserState({ ...userState, userId: user._id, books: user.books, username: '' })
+      })
+      .catch(error => console.error(error))
   }
   return (
     <>
     <UserContext.Provider value = {userState}>
     <Router>
         <Switch>
-          <Route exact path = 'signIn'>
+          <Route exact path = {userState.userId ? '/signIn' :'/'}>
             <SignIn />
           </Route>
-          <Route exact path = '/'>
+          <Route exact path = {userState.userId ? '/' : '/search'}>
           <Navbar />
             <Search />
           </Route>

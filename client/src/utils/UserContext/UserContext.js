@@ -5,7 +5,7 @@ const UserContext = createContext({
   userId: '',
   books: [],
   handleInputChange: () => {},
-  handleSubmit: () => {},
+  handleLogIn: () => {},
   handleSignUp: () => {}
 })
 

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
 
-  let {username, handleInputChange, handleSignUp} = useContext(UserContext)
+  let {username, handleInputChange, handleSignUp, handleLogIn} = useContext(UserContext)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,6 +61,7 @@ const SignIn = () => {
           <Grid container>
             <Grid item xs>
               <Button
+                onClick = {handleLogIn}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -68,10 +69,9 @@ const SignIn = () => {
                 className={classes.submit}
               >
                 Sign In
-          </Button>
+              </Button>
             </Grid>
             <Grid item xs>
-              <Link>
                 <Button
                   onClick = {handleSignUp}
                   type="submit"
@@ -82,7 +82,6 @@ const SignIn = () => {
                 >
                   Register
                 </Button>
-              </Link>
             </Grid>
           </Grid>
         </form>
