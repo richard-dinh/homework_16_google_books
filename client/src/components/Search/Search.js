@@ -10,14 +10,16 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Search = () => {
-  let {books, handleAddToSaved} = useContext(UserContext)
+  let {books, handleAddToSaved, userId} = useContext(UserContext)
   const classes = useStyles()
   return(
     <div className={classes.root}>
       <Grid container spacing={3}>
         {/* Book Cards here */}
         {books ? books.map( book => 
-          <BookCard 
+          <BookCard
+            key = {book._id}
+            link = {book.link} 
             title = {book.title}
             authors = {book.authors.map((author, i) => {
               if(i === book.authors.length){
@@ -27,7 +29,14 @@ const Search = () => {
             })}
             description = {book.description}
             image = {book.image}
-            onClickAction = {handleAddToSaved}
+            onClickAction = {handleAddToSaved(userId, book._id, {
+              id: book._id,
+              authors: book.authors,
+              description: book.description,
+              image: book.image,
+              link: book.image,
+              title: book.title
+            })}
             action = "Add to Saved Books"
           />
           ) : null}

@@ -57,8 +57,14 @@ function App() {
     setUserState({ ...userState, userId: '', books: [] })
   }
 
-  userState.handleAddToSaved = (userId, bookId) => {
-
+  userState.handleAddToSaved = (userId, bookId, book) => {
+    User.update(userId, bookId)
+    .then( () => {
+      let tempArr = JSON.parse(JSON.stringify(userState.savedBooks))
+      tempArr.push(book)
+      setUserState({...userState, books: tempArr})
+    })
+    .catch(error => console.error(error))
   }
 
   userState.handleSearchBooks = (name) => {

@@ -72,7 +72,7 @@ const BookCard = props => {
         className={classes.action}
       >
         <Button 
-          onClick = {props.onClickAction}
+          onClick = {() => props.onClickAction}
         >
         {props.action}</Button>
       </CardActions>
