@@ -43,7 +43,7 @@ const SignIn = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in - Offbrand Google Books
+          Sign in - Book Search
         </Typography>
         <form className={classes.form}>
           <TextField
