@@ -10,6 +10,9 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.use(require('./routes'))
+app.get('/*', (requestt, response) => {
+  response.sendFile(join(__dirname, 'client', 'build', 'index.html'))
+})
 
 require('./config')
   .then(() => app.listen(process.env.PORT || 3001))
