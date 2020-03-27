@@ -15,7 +15,6 @@ const Saved = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {/* Book Cards here */}
         {savedBooks ? savedBooks.map(book =>
           <BookCard
             key={book._id}

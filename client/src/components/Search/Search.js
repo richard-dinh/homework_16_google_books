@@ -15,7 +15,6 @@ const Search = () => {
   return(
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {/* Book Cards here */}
         {books ? books.map( book => 
           <BookCard
             key = {book._id}

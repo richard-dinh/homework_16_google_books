@@ -47,19 +47,15 @@ const BookCard = props => {
             R
           </Avatar>
         }
-        //BOOK TITLE HERE
         title={props.title}
-        //BOOK AUTHOR HERE
         subheader={props.authors}
       />
       <CardMedia
         className={classes.media}
-        // BOOK IMAGE HERE
         image={props.image}
         title={props.title}
       />
       <CardContent>
-        {/* BOOK PLOT HERE */}
         <Typography variant="body2" color="textSecondary" component="p">
           {props.description}
         </Typography>
